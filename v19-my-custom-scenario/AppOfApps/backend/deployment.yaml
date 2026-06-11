@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-db
+  namespace: my-app
+spec:
+  selector:
+    matchLabels:
+      app: myapp-db-pod
+  template:
+    metadata:
+      labels:
+        app: myapp-db-pod
+    spec:
+      containers:
+      - name: myapp-db-cntr
+        image: mysql
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3306
