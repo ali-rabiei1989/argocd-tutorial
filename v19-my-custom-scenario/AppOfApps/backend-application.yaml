@@ -4,7 +4,7 @@ kind: Application
 metadata:
   name: backend
 spec:
-  project: defaul
+  project: default
   source:
     repoURL: https://github.com/ali-rabiei1989/argocd-tutorial.git
     targetRevision: tutorial
