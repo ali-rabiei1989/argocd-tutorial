@@ -6,7 +6,7 @@ spec:
   destination:
     namespace: directory
     server: https://kubernetes.default.svc
-  project: default
+  project: project-role
   source:
     directory:
       recurse: true

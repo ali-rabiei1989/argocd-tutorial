@@ -11,5 +11,5 @@ spec:
   - namespace: '*'
     server: '*'
   sourceRepos:
-  - '!https://github.com/devopshobbies/argocd-tutorial.git' ## Use '!' to place repo in BlackList, if we remove '!' the repo will be placed in WhiteList
-  - '*' ## '*' means we are allowed to use any repos
+  - 'https://github.com/ali-rabiei1989/argocd-tutorial.git' ## Use '!' to place repo in BlackList, if we remove '!' the repo will be placed in WhiteList
+#  - '*' ## '*' means we are allowed to use any repos
