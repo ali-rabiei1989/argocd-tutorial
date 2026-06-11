@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/ali-rabiei1989/argocd-tutorial.git
     targetRevision: tutorial
-    path: v19-my-custom-scenario/DirectoryOfManifests
+    path: v19-my-custom-scenario/AppOfApps
   destination:
     server: https://kubernetes.default.svc
     namespace: my-app
