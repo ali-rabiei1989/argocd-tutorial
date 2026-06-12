@@ -8,7 +8,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/ali-rabiei1989/argocd-tutorial.git
-    targetRevision: main
+    targetRevision: tutorial
     path: v19-my-custom-scenario/add-cluster/multi-cluster-app
   destination:
     name: dev-cluster

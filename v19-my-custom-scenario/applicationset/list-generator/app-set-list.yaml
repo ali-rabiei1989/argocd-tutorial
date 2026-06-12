@@ -1,0 +1,36 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: appset-by-list
+spec:
+  goTemplate: true
+  goTemplateOptions: ['missingkey=error']
+  generators:
+    - list:
+        elements:
+          - cluster-name: prod
+            cluster-address: https://kubernetes.default.svc
+            branch: main
+          - cluster-name: dev
+            cluster-address: https://192.168.255.1:64430 
+            branch: tutorial
+  template:
+    metadata:
+      name: '{{.cluster-name}}-app'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/ali-rabiei1989/argocd-tutorial.git
+        targetRevision: '{{.branch}}'
+        path: v03-argocd-applications/directoryOfmanifests/deployment.yml
+      destination:
+        server: '{{.cluster-address}}'
+        namespace: app-set
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - Validate=false
+          - CreateNamespace=true    
