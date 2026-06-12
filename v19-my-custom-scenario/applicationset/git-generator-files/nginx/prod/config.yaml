@@ -2,5 +2,6 @@ app:
   cluster: https://kubernetes.default.svc
   name: prod
   path: v19-my-custom-scenario/applicationset/git-generator-files/manifests
+  project: default
   ns: prod-ns
   branch: main

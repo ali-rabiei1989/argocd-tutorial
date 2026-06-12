@@ -5,6 +5,7 @@ metadata:
   name: git-gen-files-appset
   namespace: argocd
 spec:
+  goTemplate: true
   goTemplateOptions: ['missingkey=error']
   generators:
     - git:
@@ -14,19 +15,19 @@ spec:
           - path: v19-my-custom-scenario/applicationset/git-generator-files/nginx/**/config.yaml
   template:
     metadata:
-      name: '{{app.name}}-nginx-app'
+      name: '{{ .app.name }}-nginx-app'
       namespace: argocd
     spec:
-      project: '{{app.project}}'
+      project: '{{ .app.project }}'
       source:
         repoURL: https://github.com/ali-rabiei1989/argocd-tutorial.git
-        targetRevision: '{{app.branch}}'
-        path: '{{app.path}}'
+        targetRevision: '{{ .app.branch }}'
+        path: '{{ .app.path }}'
         directory:
           recurse: true
       destination:
-        server: '{{app.cluster}}'
-        namespace: '{{app.ns}}'
+        server: '{{ .app.cluster }}'
+        namespace: '{{ .app.ns }}'
       syncPolicy:
         automated:
           prune: true
@@ -34,4 +35,3 @@ spec:
         syncOptions:
           - Validate=false
           - CreateNamespace=true
-    
