@@ -27,7 +27,7 @@ spec:
         - name: nginx
           securityContext:
             {}
-          image: "docker.arvancloud.ir/nginx:1.16.0"
+          image: "docker.arvancloud.ir/nginx"
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
