@@ -3,6 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: appset-by-list
+  namespace: argocd
 spec:
   goTemplate: true
   goTemplateOptions: ['missingkey=error']
@@ -18,6 +19,7 @@ spec:
   template:
     metadata:
       name: '{{.cluster-name}}-app'
+      namespace: argocd
     spec:
       project: default
       source:
