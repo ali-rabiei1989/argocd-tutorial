@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: apache
+  name: caddy
 spec:
   selector:
     matchLabels:
-      app: apache
+      app: caddy
   template:
     metadata:
       labels:
-        app: apache
+        app: caddy
     spec:
       containers:
-      - name: apache
-        image: docker.arvancloud.ir/apache
+      - name: caddy
+        image: docker.arvancloud.ir/caddy
         resources:
           limits:
             memory: "128Mi"
