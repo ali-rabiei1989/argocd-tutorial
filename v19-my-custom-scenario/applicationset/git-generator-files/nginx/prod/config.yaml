@@ -3,3 +3,4 @@ app:
   name: prod
   path: v19-my-custom-scenario/applicationset/git-generator-files/manifests
   ns: prod-ns
+  branch: main
