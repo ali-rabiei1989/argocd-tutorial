@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: alpine
 spec:
   selector:
     matchLabels:
-      app: mysql
+      app: alpine
   template:
     metadata:
       labels:
-        app: mysql
+        app: alpine
     spec:
       containers:
-      - name: mysql
-        image: docker.arvancloud.ir/mysql
+      - name: alpine
+        image: docker.arvancloud.ir/alpine
         resources:
           limits:
             memory: "128Mi"
