@@ -2,13 +2,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: dev-argo-app
+  name: dev-argo-app-2
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/ali-rabiei1989/argocd-tutorial.git
-    targetRevision: tutorial
+    targetRevision: main
     path: v19-my-custom-scenario/add-cluster/multi-cluster-app
   destination:
     name: dev-cluster
