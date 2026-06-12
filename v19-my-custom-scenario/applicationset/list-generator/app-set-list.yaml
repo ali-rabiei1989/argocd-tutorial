@@ -10,24 +10,24 @@ spec:
   generators:
     - list:
         elements:
-          - cluster-name: prod
-            cluster-address: https://kubernetes.default.svc
+          - cluster_name: prod
+            cluster_address: https://kubernetes.default.svc
             branch: main
-          - cluster-name: dev
-            cluster-address: https://192.168.255.1:64430 
+          - cluster_name: dev
+            cluster_address: https://192.168.255.1:64430 
             branch: tutorial
   template:
     metadata:
-      name: '{{.cluster-name}}-app'
+      name: '{{.cluster_name}}-app'
       namespace: argocd
     spec:
       project: default
       source:
         repoURL: https://github.com/ali-rabiei1989/argocd-tutorial.git
         targetRevision: '{{.branch}}'
-        path: v03-argocd-applications/directoryOfmanifests/deployment.yml
+        path: v03-argocd-applications/directoryOfmanifests
       destination:
-        server: '{{.cluster-address}}'
+        server: '{{.cluster_address}}'
         namespace: app-set
       syncPolicy:
         automated:

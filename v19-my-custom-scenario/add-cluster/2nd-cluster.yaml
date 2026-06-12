@@ -28,6 +28,6 @@ roleRef:
   kind: ClusterRole
   name: cluster-admin
 subjects:
-- kind: ServiceAccount
-  name: argocd-manager
-  namespace: argo-app
+  - kind: ServiceAccount
+    name: argocd-manager
+    namespace: argo-app
