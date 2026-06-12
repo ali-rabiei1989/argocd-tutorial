@@ -1,0 +1,35 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: git-gen-appset
+spec:
+  goTemplate: true
+  goTemplateOptions: ['missingkey=error']
+  generators:
+    - git:
+        repoURL: https://github.com/ali-rabiei1989/argocd-tutorial.git
+        revision: tutorial
+        directories:
+          - path: v19-my-custom-scenario/applicationset/git-generator/manifests/*
+  template:
+    metadata:
+      name: '{{path.basename}}-app'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/ali-rabiei1989/argocd-tutorial.git
+        targetRevision: tutorial
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path.basename}}-ns'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - Validate=false
+          - CreateNamespace=true
+  templatePatch: |
+    
