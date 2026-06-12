@@ -18,7 +18,7 @@ stringData:
 
   name: dev-cluster
 
-  server: 192.168.255.1:64430
+  server: https://192.168.255.1:64430
 
   config: |
 
