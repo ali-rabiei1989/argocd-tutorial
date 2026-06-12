@@ -1,0 +1,5 @@
+app:
+  cluster: https://192.168.255.1:64430
+  name: dev
+  path: v19-my-custom-scenario/applicationset/git-generator-files/manifests
+  ns: dev-ns
