@@ -17,6 +17,9 @@ spec:
     metadata:
       name: '{{ .app.name }}-nginx-app'
       namespace: argocd
+      annotations:
+        notifications.argoproj.io/subscribe.mm-on-deployed.mattermost: "p4xonjwxzbfmxq44fmnzbwra9a"
+        notifications.argoproj.io/subscribe.mm-on-sync-failed.mattermost: "p4xonjwxzbfmxq44fmnzbwra9a"
     spec:
       project: '{{ .app.project }}'
       source:
