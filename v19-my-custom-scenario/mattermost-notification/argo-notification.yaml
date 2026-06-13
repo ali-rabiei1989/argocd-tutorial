@@ -1,0 +1,101 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: argocd-notifications-secret
+  namespace: argocd
+  labels:
+    app.kubernetes.io/component: notifications-controller
+    app.kubernetes.io/name: argocd-notifications-controller
+    app.kubernetes.io/part-of: argocd
+type: Opaque
+stringData:
+  mattermost-token: "kd9dg8woi7f5i8uftsntmnjrnh"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-notifications-cm
+  namespace: argocd
+  labels:
+    app.kubernetes.io/component: notifications-controller
+    app.kubernetes.io/name: argocd-notifications-controller
+    app.kubernetes.io/part-of: argocd
+data:
+  context: |
+    argocdUrl: https://argocd.demo.local
+
+  service.mattermost: |
+    apiURL: https://chat.demo.local
+    token: $mattermost-token
+    insecureSkipVerify: true
+
+  template.mm-app-deployed: |
+    message: |
+      ✅ Application {{.app.metadata.name}} deployed successfully.
+    mattermost:
+      attachments: |
+        [{
+          "title": "{{.app.metadata.name}}",
+          "title_link": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+          "color": "#18be52",
+          "fields": [
+            {
+              "title": "Sync Status",
+              "value": "{{.app.status.sync.status}}",
+              "short": true
+            },
+            {
+              "title": "Health",
+              "value": "{{.app.status.health.status}}",
+              "short": true
+            },
+            {
+              "title": "Revision",
+              "value": "{{.app.status.sync.revision}}",
+              "short": true
+            },
+            {
+              "title": "Repository",
+              "value": "{{.app.spec.source.repoURL}}",
+              "short": false
+            }
+          ]
+        }]
+
+  template.mm-app-sync-failed: |
+    message: |
+      ❌ Application {{.app.metadata.name}} sync failed.
+    mattermost:
+      attachments: |
+        [{
+          "title": "{{.app.metadata.name}}",
+          "title_link": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true",
+          "color": "#E96D76",
+          "fields": [
+            {
+              "title": "Sync Status",
+              "value": "{{.app.status.sync.status}}",
+              "short": true
+            },
+            {
+              "title": "Health",
+              "value": "{{.app.status.health.status}}",
+              "short": true
+            },
+            {
+              "title": "Error",
+              "value": "{{.app.status.operationState.message}}",
+              "short": false
+            }
+          ]
+        }]
+
+  trigger.mm-on-deployed: |
+    - when: app.status?.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
+      oncePer: app.status.sync.revision
+      send: [mm-app-deployed]
+
+  trigger.mm-on-sync-failed: |
+    - when: app.status?.operationState.phase in ['Error', 'Failed']
+      oncePer: app.status?.operationState.finishedAt
+      send: [mm-app-sync-failed]
