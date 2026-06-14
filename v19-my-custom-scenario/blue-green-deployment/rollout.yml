@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: blue-green-nginx
-        image: nginx:1.29
+        image: nginx:1.30
         ports:
         - containerPort: 80
   strategy:
