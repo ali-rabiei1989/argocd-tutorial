@@ -29,4 +29,4 @@ spec:
       volumes:
         - name: nginx-config
           configMap:
-            name: rolling-update-v1-cm
+            name: rolling-update-v2-cm

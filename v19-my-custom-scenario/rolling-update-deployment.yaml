@@ -11,7 +11,7 @@ spec:
     targetRevision: tutorial
     path: v19-my-custom-scenario/rolling-update-deployment
   destination:
-    server: https://192.168.255.1:64430
+    server: https://kubernetes.default.svc
     namespace: rolling-update
   syncPolicy:
     automated:
