@@ -1,0 +1,22 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rolling-update-demo
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/ali-rabiei1989/argocd-tutorial.git
+    targetRevision: tutorial
+    path: v19-my-custom-scenario/rolling-update-deployment
+  destination:
+    server: https://192.168.255.1:64430
+    namespace: rolling-update
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - Validate=false
+      - CreateNamespace=true
