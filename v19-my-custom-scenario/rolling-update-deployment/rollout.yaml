@@ -3,7 +3,7 @@ kind: Rollout
 metadata:
   name: rolling-update-demo
 spec:
-  replicas: 6
+  replicas: 5
   selector:
     matchLabels:
       app: rolling-update
@@ -24,7 +24,7 @@ spec:
       volumes:
         - name: nginx-config
           configMap:
-            name: rolling-update-v2-cm
+            name: rolling-update-v1-cm
   minReadySeconds: 30
   revisionHistoryLimit: 3
   strategy:
