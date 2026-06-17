@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: rolling-update-demo
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: rolling-update
+  template:
+    metadata:
+      labels:
+        app: rolling-update
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+  minReadySeconds: 30
+  revisionHistoryLimit: 3
+  strategy:
+    canary: #Indicates that the rollout should use the Canary strategy
+      maxSurge: '25%'
+      maxUnavailable: 0
