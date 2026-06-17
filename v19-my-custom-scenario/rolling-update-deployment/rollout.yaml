@@ -24,10 +24,14 @@ spec:
       volumes:
         - name: nginx-config
           configMap:
-            name: rolling-update-v1-cm
+            name: rolling-update-v2-cm
   minReadySeconds: 30
   revisionHistoryLimit: 3
   strategy:
-    canary: #Indicates that the rollout should use the Canary strategy
-      maxSurge: '25%'
-      maxUnavailable: 0
+    canary:
+      steps:
+        - setWeight: 20
+        - pause: {10}
+        - setWeight: 50
+        - pause: {10}
+            
