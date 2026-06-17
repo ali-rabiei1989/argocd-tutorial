@@ -3,7 +3,7 @@ kind: Rollout
 metadata:
   name: rolling-update-demo
 spec:
-  replicas: 5
+  replicas: 6
   selector:
     matchLabels:
       app: rolling-update
@@ -31,7 +31,8 @@ spec:
     canary:
       steps:
         - setWeight: 20
-        - pause: {10}
+        - pause: {}
         - setWeight: 50
-        - pause: {10}
+        - pause:
+            duration: 10
             
