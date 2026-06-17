@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: rolling-update-ingress
+  namespace: rolling-update
   labels:
     app.kubernetes.io/name: rolling-update-ingress
 spec:
