@@ -4,6 +4,7 @@ metadata:
   name: rolling-update-deployment
   namespace: rolling-update
 spec:
+  replicas: 3  
   selector:
     matchLabels:
       app: rolling-update
