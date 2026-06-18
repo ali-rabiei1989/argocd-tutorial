@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: rolling-update-demo
+  name: rolling-update-rollout
 spec:
   replicas: 2
   selector:
