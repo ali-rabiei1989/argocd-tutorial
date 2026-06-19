@@ -32,7 +32,6 @@ spec:
       containers:
       - name: canary-traffic-management-cntr
         image: nginx:1.30 # This is the same image that we built in the previous session (v12-argo-rollouts-blue-green) , I just re-tagged it
-        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
         volumeMounts:
