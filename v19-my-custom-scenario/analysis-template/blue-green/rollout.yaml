@@ -25,11 +25,12 @@ spec:
       volumes:
         - name: nginx-config
           configMap:
-            name: v2-cm
+            name: v1-cm
   minReadySeconds: 30
   revisionHistoryLimit: 3
   strategy:
     blueGreen:
       activeService: active
       previewService: preview
+      autoPromotionEnabled: false
             
