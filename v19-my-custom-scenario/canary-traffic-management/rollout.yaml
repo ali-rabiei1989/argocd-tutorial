@@ -42,4 +42,4 @@ spec:
       volumes:
         - name: nginx-index
           configMap:
-            name: canary-v1-cm
+            name: canary-v2-cm
