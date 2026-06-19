@@ -32,5 +32,8 @@ spec:
     blueGreen:
       activeService: active
       previewService: preview
-      autoPromotionEnabled: false
+      autoPromotionEnabled: true
+      prePromotionAnalysis:     #### Pre-Promotion Analysis
+        templates:
+        - templateName: success-rate-pre
             

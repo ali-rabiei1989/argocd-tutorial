@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: success-rate-pre
+spec:
+  args:
+  - name: service-name
+  metrics:
+    - name: success-rate-pre
+      provider:
+        job:
+          spec:
+            template:
+              metadata:
+                labels:
+                  analysis: pre-promotion  
+              spec:
+                containers:
+                - name: success-rate-pre-cntr
+                  image: docker.io/library/web-tester:v2
+                  imagePullPolicy: Never
+                restartPolicy: Never
