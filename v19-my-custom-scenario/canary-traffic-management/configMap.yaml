@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: canary-v1-cm
+  namespace: canary
+data:
+  index.html: |
+    <html>
+      <body>
+        <h1> Welcome to canary app v1 </h1>
+      </body>
+    </html>
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: canary-v2-cm
+  namespace: canary
+data:
+  index.html: |
+    <html>
+      <body>
+        <h1> Welcome to canary app v2 </h1>
+      </body>
+    </html>

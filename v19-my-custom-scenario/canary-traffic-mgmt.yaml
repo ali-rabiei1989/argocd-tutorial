@@ -1,0 +1,21 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: canary-traffic-management
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/ali-rabiei1989/argocd-tutorial.git
+    targetRevision: tutorial
+    path: v19-my-custom-scenario/canary-traffic-management
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: canary
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - Validate=false
+      - CreateNamespace=true

@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: canary-traffic-management
+spec:
+  replicas: 5
+  strategy:
+    canary:
+      # dynamicStableScale: true
+      # abortScaleDownDelaySeconds: 20
+      canaryService: canary
+      stableService: stable
+      trafficRouting:
+        nginx:
+          stableIngress: canary-traffic-management
+      steps:
+      - setWeight: 20 # Using Setweight Only
+      - pause: {}
+      # ....................
+      # - setCanaryScale: # Using SetCanaryScale with SetWeight
+      #    weight: 40 
+      # - setWeight: 40
+      # - pause: {}
+  selector:
+    matchLabels:
+      app: canary-traffic-management
+  template:
+    metadata:
+      labels:
+        app: canary-traffic-management
+    spec:
+      containers:
+      - name: canary-traffic-management-cntr
+        image: nginx:1.30 # This is the same image that we built in the previous session (v12-argo-rollouts-blue-green) , I just re-tagged it
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - mountPath: /usr/share/nginx/html/index.html
+            name: nginx-index
+      volumes:
+        - name: nginx-index
+          configMap:
+            - name: canary-v1-cm

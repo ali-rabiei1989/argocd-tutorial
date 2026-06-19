@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: stable
+  namespace: canary
+spec:
+  selector:
+    app: canary-traffic-management
+  ports:
+    - port: 80
+      targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: canary
+  namespace: canary
+spec:
+  selector:
+    app: canary-traffic-management
+  ports:
+    - port: 80
+      targetPort: 80
