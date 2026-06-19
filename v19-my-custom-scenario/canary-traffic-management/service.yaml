@@ -5,7 +5,7 @@ metadata:
   namespace: canary
 spec:
   selector:
-    app: canary-traffic-management
+    app: canary-app
   ports:
     - port: 80
       targetPort: 80
@@ -17,7 +17,7 @@ metadata:
   namespace: canary
 spec:
   selector:
-    app: canary-traffic-management
+    app: canary-app
   ports:
     - port: 80
       targetPort: 80
