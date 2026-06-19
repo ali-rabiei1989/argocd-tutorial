@@ -25,7 +25,7 @@ spec:
       volumes:
         - name: nginx-config
           configMap:
-            name: v2-cm
+            name: v3-cm
   minReadySeconds: 30
   revisionHistoryLimit: 3
   strategy:
