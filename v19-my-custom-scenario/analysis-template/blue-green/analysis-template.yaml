@@ -17,6 +17,8 @@ spec:
               spec:
                 containers:
                 - name: success-rate-pre-cntr
-                  image: docker.io/library/web-tester:v2
+                  image: docker.io/library/web-tester:v3
+                  command:
+                    [sh, /tester.sh, http://preview.analysis-bluegreen.svc]
                   imagePullPolicy: Never
                 restartPolicy: Never

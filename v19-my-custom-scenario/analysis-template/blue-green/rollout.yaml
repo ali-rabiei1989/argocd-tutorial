@@ -36,4 +36,6 @@ spec:
       prePromotionAnalysis:     #### Pre-Promotion Analysis
         templates:
         - templateName: success-rate-pre
-            
+        args:
+        - name: service-name
+          value: preview
