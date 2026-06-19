@@ -1,0 +1,23 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: analysis-argo-app
+spec:
+  project: default
+  source:
+    directory:
+      include: blue-green/*
+    repoURL: https://github.com/ali-rabiei1989/argocd-tutorial.git
+    targetRevision: tutorial
+    path: v19-my-custom-scenario/
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: analysis-bluegreen
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - Validate=false
+      - CreateNamespace=true

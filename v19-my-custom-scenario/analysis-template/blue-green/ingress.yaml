@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: analysis-ingress
+  namespace: analysis-bluegreen
+  labels:
+    app.kubernetes.io/name: analysis-ingress
+spec:
+  rules:
+  - host: app.demo.local
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: active
+            port: 
+              number: 80

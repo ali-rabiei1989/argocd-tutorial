@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: analysis-bluegreen
+  name: canady
+spec:
+  selector:
+    app: analysis-app
+  ports:
+  - port: 80
+    targetPort: 80
