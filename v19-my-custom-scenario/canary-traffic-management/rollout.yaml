@@ -34,10 +34,11 @@ spec:
       - name: canary-traffic-management-cntr
         image: nginx:1.30 # This is the same image that we built in the previous session (v12-argo-rollouts-blue-green) , I just re-tagged it
         ports:
-        - containerPort: 80
+          - containerPort: 80
         volumeMounts:
           - mountPath: /usr/share/nginx/html/index.html
             name: nginx-index
+            subPath: index.html
       volumes:
         - name: nginx-index
           configMap:
