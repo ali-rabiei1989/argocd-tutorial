@@ -8,9 +8,10 @@ spec:
   source:
     directory:
       include: blue-green/*
+      recurse: true
     repoURL: https://github.com/ali-rabiei1989/argocd-tutorial.git
     targetRevision: tutorial
-    path: v19-my-custom-scenario/
+    path: v19-my-custom-scenario/analysis-template
   destination:
     server: https://kubernetes.default.svc
     namespace: analysis-bluegreen
