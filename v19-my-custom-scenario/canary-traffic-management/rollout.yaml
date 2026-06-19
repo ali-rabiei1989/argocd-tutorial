@@ -27,7 +27,6 @@ spec:
       app: canary-traffic-management
   template:
     metadata:
-      namespace: canary
       labels:
         app: canary-traffic-management
     spec:
@@ -42,4 +41,4 @@ spec:
       volumes:
         - name: nginx-index
           configMap:
-            - name: canary-v1-cm
+            name: canary-v1-cm
