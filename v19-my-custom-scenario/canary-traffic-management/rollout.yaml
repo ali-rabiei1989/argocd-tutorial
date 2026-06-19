@@ -24,11 +24,11 @@ spec:
       # - pause: {}
   selector:
     matchLabels:
-      app: canary-traffic-management
+      app: canary-app
   template:
     metadata:
       labels:
-        app: canary-traffic-management
+        app: canary-app
     spec:
       containers:
       - name: canary-traffic-management-cntr
@@ -36,7 +36,7 @@ spec:
         ports:
           - containerPort: 80
         volumeMounts:
-          - mountPath: /usr/share/nginx/html/index.html
+          - mountPath: /usr/share/nginx/html/
             name: nginx-index
             subPath: index.html
       volumes:
