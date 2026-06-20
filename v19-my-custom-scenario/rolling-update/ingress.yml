@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rolling-update-ingress
+  namespace: rolling-update
+  labels:
+    app.kubernetes.io/name: rolling-update-ingress
+spec:
+  rules:
+  - host: app.demo.local
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: rolling-update-svc
+            port: 
+              number: 80

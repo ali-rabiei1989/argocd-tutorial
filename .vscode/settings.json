@@ -1,0 +1,11 @@
+{
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.1-standalone-strict/all.json": [
+            "**/*.yaml",
+            "file:///home/ali/Documents/workspace/argocd-tutorial/v19-my-custom-scenario/rolling-update/service.yaml",
+            "file:///home/ali/Documents/workspace/argocd-tutorial/v19-my-custom-scenario/rolling-update/namespace.yml",
+            "file:///home/ali/Documents/workspace/argocd-tutorial/v19-my-custom-scenario/rolling-update/service.yml",
+            "file:///home/ali/Documents/workspace/argocd-tutorial/v19-my-custom-scenario/rolling-update/rolling-update.yml"
+        ]
+    }
+}

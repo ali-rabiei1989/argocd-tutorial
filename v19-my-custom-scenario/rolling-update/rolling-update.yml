@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: rolling-update-rollout
+  namespace: rolling-update
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: rolling-update-app
+  template:
+    metadata:
+      labels:
+        app: rolling-update-app
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.15.4
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /usr/share/nginx/html/index.html
+              name: nginx-index
+              subPath: nginx-default-page
+      volumes:
+        - name: nginx-index
+          configMap:
+            name: rolling-update-v2-cm
+  minReadySeconds: 30
+  revisionHistoryLimit: 3
+  strategy:
+    canary: #Indicates that the rollout should use the Canary strategy
+      maxSurge: '50%'
+      maxUnavailable: '25%'
